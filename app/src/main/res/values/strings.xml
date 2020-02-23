@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Pith</string>
+
+    <string name="dialog_loading">数据加载中</string>
+</resources>
