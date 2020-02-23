@@ -11,11 +11,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.dualvector.pith.util.DialogUtils;
-import com.squareup.leakcanary.RefWatcher;
+import com.dualvector.pith.util.DialogUtil;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 
 public abstract class BaseFragment<P extends BasePresenter> extends RxFragment implements IView, IFragment {
 
@@ -35,7 +36,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment i
             parent.removeView(mRootView);
         }
 
-        mDialog = DialogUtils.createLoadingDialog(getActivity(), "请稍后...");
+        ButterKnife.bind(this, mRootView);
+        mDialog = DialogUtil.createLoadingDialog(getActivity(), "");
 
         initView();
         initData(savedInstanceState);
@@ -49,11 +51,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment i
         if (context == null) {
             Log.e("RefWatcherErr", "Activity of fragment is null, init RefWatcher failed.");
             return;
-        }
-        RefWatcher refWatcher = BaseApplication.getRefWatcher(context);
-        refWatcher.watch(this);
-        if (mPresenter != null) {
-            mPresenter.onDestroy();
         }
     }
 }

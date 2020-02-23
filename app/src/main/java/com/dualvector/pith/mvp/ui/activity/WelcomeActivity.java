@@ -14,7 +14,7 @@ import java.util.TimerTask;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static final int DELAY_TIME = 1;
+    private static final int DELAY_TIME = 500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(BaseApplication.getContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         }, DELAY_TIME);
     }

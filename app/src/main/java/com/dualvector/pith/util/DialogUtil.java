@@ -1,7 +1,9 @@
 package com.dualvector.pith.util;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 
 import com.dualvector.pith.R;
 
-public class DialogUtils {
+public class DialogUtil {
 
     public static Dialog createLoadingDialog(Context context, String msg) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -33,5 +35,10 @@ public class DialogUtils {
         }
 
         return loadingDialog;
+    }
+
+    public static Dialog createItemDialog(Context context, final String[] items, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        return builder.setItems(items, listener).create();
     }
 }

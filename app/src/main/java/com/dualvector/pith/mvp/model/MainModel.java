@@ -1,4 +1,4 @@
-package com.dualvector.pith.mvp.model.api;
+package com.dualvector.pith.mvp.model;
 
 import com.dualvector.pith.mvp.contract.MainContract;
 

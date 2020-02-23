@@ -1,7 +1,7 @@
 package com.dualvector.pith.di.module;
 
 import com.dualvector.pith.mvp.contract.MainContract;
-import com.dualvector.pith.mvp.model.api.MainModel;
+import com.dualvector.pith.mvp.model.MainModel;
 
 import dagger.Module;
 import dagger.Provides;

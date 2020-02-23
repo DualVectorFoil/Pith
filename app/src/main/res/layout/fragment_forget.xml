@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/user_info"
+        android:layout_width="@dimen/login_fragment_user_info_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/register_forget_fragment_marginTop">
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:drawableStart="@mipmap/ic_user_icon"
+            android:hint="暂不支持，没手机或邮箱找回"
+            android:textColor="#000000"/>
+
+        <com.dualvector.pith.mvp.ui.widget.PasswordEditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_below="@+id/name_et"
+            android:hint="@string/input_password"
+            android:textColor="#000000"
+            android:drawableStart="@mipmap/ic_password_icon"
+            android:drawableEnd="@mipmap/ic_password_hide_icon"
+            android:layout_marginTop="@dimen/login_fragment_input_marginTop"/>
+
+        <com.dualvector.pith.mvp.ui.widget.PasswordEditText
+            android:id="@+id/repeat_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_below="@+id/password_et"
+            android:hint="@string/repeat_input_password"
+            android:textColor="#000000"
+            android:drawableStart="@mipmap/ic_password_icon"
+            android:drawableEnd="@mipmap/ic_password_hide_icon"
+            android:layout_marginTop="@dimen/login_fragment_input_marginTop"/>
+
+        <Button
+            android:id="@+id/confirm_register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/modify_password"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBackground"
+            android:layout_below="@+id/repeat_password_et"
+            android:background="@drawable/login_btn_selector"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
