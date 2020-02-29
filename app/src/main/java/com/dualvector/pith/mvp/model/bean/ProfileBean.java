@@ -11,6 +11,7 @@ public class ProfileBean extends BaseBean<ProfileBean.DataBean> {
          * avatar_url : http://XXX
          * registered_at : 324325234
          * last_login_at : 2353242
+         * token : akf32423jfka
          */
 
         private String user_name;
@@ -18,6 +19,7 @@ public class ProfileBean extends BaseBean<ProfileBean.DataBean> {
         private String avatar_url;
         private long registered_at;
         private long last_login_at;
+        private String token;
 
         public String getUserName() {
             return user_name;
@@ -57,6 +59,14 @@ public class ProfileBean extends BaseBean<ProfileBean.DataBean> {
 
         public void setLastLoginAt(long last_login_at) {
             this.last_login_at = last_login_at;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
         }
     }
 }

@@ -52,7 +52,7 @@
             android:layout_alignParentEnd="true"/>
 
         <Button
-            android:id="@+id/confirm_register_btn"
+            android:id="@+id/confirm_login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/confirm_login"

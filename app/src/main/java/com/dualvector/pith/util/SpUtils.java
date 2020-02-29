@@ -1,13 +1,11 @@
 package com.dualvector.pith.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.dualvector.pith.BuildConfig;
 import com.dualvector.pith.mvp.base.BaseApplication;
-import com.dualvector.pith.mvp.model.bean.ProfileBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

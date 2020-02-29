@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.dualvector.pith.BuildConfig;
 import com.dualvector.pith.R;
+import com.dualvector.pith.app.event.LoginEvent;
 import com.dualvector.pith.app.event.PhotoEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
@@ -25,6 +26,7 @@ import com.dualvector.pith.mvp.presenter.LoginPresenter;
 import com.dualvector.pith.mvp.ui.fragment.ForgetFragment;
 import com.dualvector.pith.mvp.ui.fragment.LoginFragment;
 import com.dualvector.pith.mvp.ui.fragment.RegisterFragment;
+import com.dualvector.pith.util.RouteUtil;
 import com.yalantis.ucrop.UCrop;
 
 import org.greenrobot.eventbus.EventBus;
@@ -167,6 +169,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         } else {
             mRegisterBtn.setVisibility(View.GONE);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginSuccess(LoginEvent event) {
+        if (!event.shouldProcess(LoginEvent.ON_LOGIN_SUCCESS)) {
+            return;
+        }
+        RouteUtil.startActivity(this, MainActivity.class);
+        finish();
     }
 
     @Override

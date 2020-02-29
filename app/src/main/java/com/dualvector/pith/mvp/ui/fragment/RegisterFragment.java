@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.dualvector.pith.R;
 import com.dualvector.pith.app.constants.PermissonConstants;
+import com.dualvector.pith.app.event.LoginEvent;
 import com.dualvector.pith.app.event.PhotoEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
@@ -32,10 +33,8 @@ import com.dualvector.pith.mvp.base.BaseFragment;
 import com.dualvector.pith.mvp.contract.FrRegisterContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 import com.dualvector.pith.mvp.presenter.FrRegisterPresenter;
-import com.dualvector.pith.mvp.ui.activity.MainActivity;
 import com.dualvector.pith.mvp.ui.widget.PasswordEditText;
 import com.dualvector.pith.mvp.ui.widget.PersonalCenterHeadView;
-import com.dualvector.pith.util.RouteUtil;
 import com.yalantis.ucrop.UCrop;
 
 import org.greenrobot.eventbus.EventBus;
@@ -187,12 +186,12 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
     @Override
     public void onResume() {
         super.onResume();
-        mPasswordEt.setText(mPassword);
-        mRepeatPasswordEt.setText(mRepeatPassword);
         if (!"".equals(mRepeatPassword)) {
+            mPasswordEt.setText(mPassword);
             mRepeatPasswordEt.requestFocus();
             mRepeatPasswordEt.setSelection(mRepeatPassword.length());
         } else if (!"".equals(mPassword)) {
+            mRepeatPasswordEt.setText(mRepeatPassword);
             mPasswordEt.requestFocus();
             mPasswordEt.setSelection(mPassword.length());
         }
@@ -286,8 +285,7 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
 
     @Override
     public void handleRegisterSuccess(ProfileBean.DataBean bean) {
-        RouteUtil.startActivity(mActivity, MainActivity.class);
-        mActivity.finish();
+        EventBus.getDefault().post(new LoginEvent(LoginEvent.ON_LOGIN_SUCCESS));
     }
 
     private void tryCrop(String path) {

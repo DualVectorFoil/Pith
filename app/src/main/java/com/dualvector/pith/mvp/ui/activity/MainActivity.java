@@ -1,20 +1,25 @@
 package com.dualvector.pith.mvp.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.dualvector.pith.R;
 import com.dualvector.pith.app.manager.AccountManager;
 import com.dualvector.pith.di.component.DaggerMainComponent;
 import com.dualvector.pith.di.module.MainModule;
 import com.dualvector.pith.mvp.base.BaseActivity;
-import com.dualvector.pith.mvp.base.BaseApplication;
 import com.dualvector.pith.mvp.contract.MainContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 import com.dualvector.pith.mvp.presenter.MainPresenter;
+import com.dualvector.pith.mvp.ui.adapter.SectionsPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,8 +28,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private static final String TAG = "Main_Tag_Activity";
 
-    @BindView(R.id.btn)
-    protected Button btn;
+    @BindView(R.id.sections_view_pager)
+    protected ViewPager mViewPager;
+    @BindView(R.id.main_navi_bar)
+    protected BottomNavigationBar mNaviBar;
+
+    private List<Fragment> mFragments;
+    private ProfileBean.DataBean mCookie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +46,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onResume() {
         super.onResume();
         // TODO get cookie, and get user's home page data from network
-        ProfileBean.DataBean bean = AccountManager.getsInstance().getCookie();
+        mCookie = AccountManager.getsInstance().getCookie();
+        if (mCookie == null) {
+            startAsGuest();
+        } else {
+            startAsUser();
+        }
     }
 
     @Override
@@ -46,7 +61,48 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void initView() {
+        // init viewpager and fragments
+        mFragments = new ArrayList<Fragment>();
+        // TODO add fragment into mFragments
+        mViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), mFragments));
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                mNaviBar.selectTab(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        mViewPager.setCurrentItem(0);
+
+        // init bottom navigation bar
+        mNaviBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        mNaviBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(int position) {
+                mViewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabUnselected(int position) {
+            }
+
+            @Override
+            public void onTabReselected(int position) {
+            }
+        });
+        mNaviBar.addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "首页"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "画室"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "搜索"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "消息"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "我"))
+                .initialise();
     }
 
     @Override
@@ -54,9 +110,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
-    @OnClick(R.id.btn)
+    @OnClick(R.id.main_navi_bar)
     public void onClicked(View view) {
-        Intent intent = new Intent(BaseApplication.getContext(), LoginActivity.class);
-        startActivity(intent);
+        int id = view.getId();
+        switch (id) {
+            case R.id.main_navi_bar:
+                break;
+            default:
+        }
+    }
+
+    private void startAsUser() {
+
+    }
+
+    private void startAsGuest() {
+
     }
 }

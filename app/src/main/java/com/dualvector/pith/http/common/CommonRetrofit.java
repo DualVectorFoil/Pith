@@ -1,7 +1,5 @@
 package com.dualvector.pith.http.common;
 
-import android.util.Log;
-
 import com.dualvector.pith.BuildConfig;
 import com.dualvector.pith.app.constants.NetworkConstants;
 import com.dualvector.pith.http.BaseObserver;

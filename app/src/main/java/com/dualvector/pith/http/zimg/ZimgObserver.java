@@ -4,9 +4,7 @@ import android.util.Log;
 
 import com.dualvector.pith.app.constants.HttpStatus;
 import com.dualvector.pith.http.ApiException;
-import com.dualvector.pith.http.BaseObserver;
 import com.dualvector.pith.mvp.model.bean.ZimgResponseBean;
-import com.dualvector.pith.util.ToastUtil;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
@@ -15,7 +13,6 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;

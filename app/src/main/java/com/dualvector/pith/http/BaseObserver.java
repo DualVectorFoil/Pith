@@ -4,8 +4,6 @@ import android.util.Log;
 
 import com.dualvector.pith.app.constants.HttpStatus;
 import com.dualvector.pith.mvp.base.BaseBean;
-import com.dualvector.pith.mvp.model.bean.ProfileBean;
-import com.dualvector.pith.util.ToastUtil;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;

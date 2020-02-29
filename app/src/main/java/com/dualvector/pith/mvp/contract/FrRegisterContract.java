@@ -4,7 +4,6 @@ import com.dualvector.pith.mvp.base.IModel;
 import com.dualvector.pith.mvp.base.IView;
 import com.dualvector.pith.mvp.base.OnLoadDataListener;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
-import com.dualvector.pith.mvp.model.bean.ZimgResponseBean;
 
 import java.io.File;
 
