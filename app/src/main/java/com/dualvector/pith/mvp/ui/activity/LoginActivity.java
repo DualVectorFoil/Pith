@@ -27,6 +27,7 @@ import com.dualvector.pith.mvp.ui.fragment.ForgetFragment;
 import com.dualvector.pith.mvp.ui.fragment.LoginFragment;
 import com.dualvector.pith.mvp.ui.fragment.RegisterFragment;
 import com.dualvector.pith.util.RouteUtil;
+import com.gyf.immersionbar.ImmersionBar;
 import com.yalantis.ucrop.UCrop;
 
 import org.greenrobot.eventbus.EventBus;

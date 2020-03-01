@@ -17,6 +17,7 @@ import com.dualvector.pith.mvp.contract.MainContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 import com.dualvector.pith.mvp.presenter.MainPresenter;
 import com.dualvector.pith.mvp.ui.adapter.SectionsPagerAdapter;
+import com.dualvector.pith.mvp.ui.fragment.AccountFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private static final String TAG = "Main_Tag_Activity";
 
+//    @BindView(R.id.main_tool_bar)
+//    protected Toolbar mToolbar;
     @BindView(R.id.sections_view_pager)
     protected ViewPager mViewPager;
     @BindView(R.id.main_navi_bar)
@@ -64,6 +67,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         // init viewpager and fragments
         mFragments = new ArrayList<Fragment>();
         // TODO add fragment into mFragments
+        mFragments.add(new AccountFragment());
+        mFragments.add(new AccountFragment());
+        mFragments.add(new AccountFragment());
+        mFragments.add(new AccountFragment());
+        mFragments.add(new AccountFragment());
         mViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), mFragments));
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -82,6 +90,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mViewPager.setCurrentItem(0);
 
         // init bottom navigation bar
+        mNaviBar.setMode(BottomNavigationBar.MODE_FIXED);
         mNaviBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         mNaviBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
@@ -97,11 +106,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             public void onTabReselected(int position) {
             }
         });
-        mNaviBar.addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "首页"))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "画室"))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "搜索"))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "消息"))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon, "我"))
+        mNaviBar.addItem(new BottomNavigationItem(R.mipmap.ic_home_page_icon_active, "首页").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_home_page_icon_inactive).setInActiveColorResource(R.color.colorAccent))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_creation_icon_active, "画室").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_creation_icon_inactive).setInActiveColorResource(R.color.colorAccent))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_search_icon_active, "搜索").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_search_icon_inactive).setInActiveColorResource(R.color.colorAccent))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_message_icon_active, "消息").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_message_icon_inactive).setInActiveColorResource(R.color.colorAccent))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon_active, R.string.myself_str).setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_user_icon_inactive).setInActiveColorResource(R.color.colorAccent))
                 .initialise();
     }
 

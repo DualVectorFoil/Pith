@@ -31,4 +31,6 @@
 
     <string name="illegal_password">不合规范的密码</string>
 
+    <string name="myself_str">我</string>
+
 </resources>

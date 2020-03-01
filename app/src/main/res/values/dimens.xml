@@ -23,4 +23,10 @@
     <dimen name="login_fragment_input_marginTop">0dp</dimen>
 
     <dimen name="login_fragment_user_switcher_size">73dp</dimen>
+
+    <dimen name="tool_bar_shadow_size">2dp</dimen>
+
+    <dimen name="tool_bar_title_size">20sp</dimen>
+
+    <dimen name="tool_bar_title_marginTop">30sp</dimen>
 </resources>
