@@ -1,45 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
     <LinearLayout
+        android:id="@+id/account_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:fillViewport="true">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/login_tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_height"
-            android:background="@color/colorBackground"
-            android:elevation="@dimen/tool_bar_shadow_size">
-
-            <TextView
-                android:id="@+id/user_name_tool_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/myself_str"
-                android:textSize="@dimen/tool_bar_title_size"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/tool_bar_title_marginTop"/>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/account_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"/>
+        <include layout="@layout/account_user_info"/>
 
     </LinearLayout>
 

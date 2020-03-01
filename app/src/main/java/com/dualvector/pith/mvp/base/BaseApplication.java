@@ -5,6 +5,14 @@ import android.content.Context;
 import android.os.StrictMode;
 
 import com.dualvector.pith.app.constants.CommonConstants;
+import com.dualvector.pith.mvp.ui.widget.AnimRefreshFooter;
+import com.dualvector.pith.mvp.ui.widget.AnimRefreshHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -23,6 +31,7 @@ public class BaseApplication extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+        initSmartRefreshLayout();
     }
 
     public static synchronized Context getContext() {
@@ -35,5 +44,20 @@ public class BaseApplication extends Application {
                 .name(CommonConstants.DB_NAME)
                 .build();
         Realm.setDefaultConfiguration(config);
+    }
+
+    private void initSmartRefreshLayout() {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                return new AnimRefreshHeader(context);
+            }
+        });
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                return new AnimRefreshFooter(context);
+            }
+        });
     }
 }

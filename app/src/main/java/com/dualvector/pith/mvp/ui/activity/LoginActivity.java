@@ -18,8 +18,6 @@ import com.dualvector.pith.app.event.PhotoEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
 import com.dualvector.pith.app.photo.PhotoHelper;
-import com.dualvector.pith.di.component.DaggerLoginComponent;
-import com.dualvector.pith.di.module.LoginModule;
 import com.dualvector.pith.mvp.base.BaseActivity;
 import com.dualvector.pith.mvp.contract.LoginContract;
 import com.dualvector.pith.mvp.presenter.LoginPresenter;
@@ -27,7 +25,6 @@ import com.dualvector.pith.mvp.ui.fragment.ForgetFragment;
 import com.dualvector.pith.mvp.ui.fragment.LoginFragment;
 import com.dualvector.pith.mvp.ui.fragment.RegisterFragment;
 import com.dualvector.pith.util.RouteUtil;
-import com.gyf.immersionbar.ImmersionBar;
 import com.yalantis.ucrop.UCrop;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,6 +33,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+//import com.dualvector.pith.di.component.DaggerLoginComponent;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.ILoginView {
 
@@ -60,7 +59,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
+//        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
     }
 
     @Override

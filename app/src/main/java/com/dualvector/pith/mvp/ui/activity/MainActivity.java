@@ -10,8 +10,6 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.dualvector.pith.R;
 import com.dualvector.pith.app.manager.AccountManager;
-import com.dualvector.pith.di.component.DaggerMainComponent;
-import com.dualvector.pith.di.module.MainModule;
 import com.dualvector.pith.mvp.base.BaseActivity;
 import com.dualvector.pith.mvp.contract.MainContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
@@ -24,6 +22,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+//import com.dualvector.pith.di.component.DaggerMainComponent;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView {
 
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
+//        DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
     }
 
     @Override
@@ -106,11 +106,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             public void onTabReselected(int position) {
             }
         });
-        mNaviBar.addItem(new BottomNavigationItem(R.mipmap.ic_home_page_icon_active, "首页").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_home_page_icon_inactive).setInActiveColorResource(R.color.colorAccent))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_creation_icon_active, "画室").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_creation_icon_inactive).setInActiveColorResource(R.color.colorAccent))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_search_icon_active, "搜索").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_search_icon_inactive).setInActiveColorResource(R.color.colorAccent))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_message_icon_active, "消息").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_message_icon_inactive).setInActiveColorResource(R.color.colorAccent))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon_active, R.string.myself_str).setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_user_icon_inactive).setInActiveColorResource(R.color.colorAccent))
+        mNaviBar.addItem(new BottomNavigationItem(R.mipmap.ic_home_page_icon_active, "首页").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_home_page_icon_inactive).setInActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_creation_icon_active, "画室").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_creation_icon_inactive).setInActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_search_icon_active, "搜索").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_search_icon_inactive).setInActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_message_icon_active, "消息").setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_message_icon_inactive).setInActiveColorResource(R.color.colorPrimary))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_user_icon_active, R.string.myself_str).setActiveColorResource(R.color.colorDark).setInactiveIconResource(R.mipmap.ic_user_icon_inactive).setInActiveColorResource(R.color.colorPrimary))
                 .initialise();
     }
 

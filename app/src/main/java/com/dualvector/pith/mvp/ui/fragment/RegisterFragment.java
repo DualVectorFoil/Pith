@@ -27,8 +27,6 @@ import com.dualvector.pith.app.event.PhotoEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
 import com.dualvector.pith.app.photo.PhotoHelper;
-import com.dualvector.pith.di.component.DaggerFrRegisterComponent;
-import com.dualvector.pith.di.module.FrRegisterModule;
 import com.dualvector.pith.mvp.base.BaseFragment;
 import com.dualvector.pith.mvp.contract.FrRegisterContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
@@ -47,6 +45,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
+
+//import com.dualvector.pith.di.component.DaggerFrRegisterComponent;
 
 public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implements
         FrRegisterContract.IFrRegisterView, PasswordEditText.OnChangePwdStatusListener,
@@ -85,7 +85,7 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DaggerFrRegisterComponent.builder().frRegisterModule(new FrRegisterModule(this)).build().inject(this);
+//        DaggerFrRegisterComponent.builder().frRegisterModule(new FrRegisterModule(this)).build().inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

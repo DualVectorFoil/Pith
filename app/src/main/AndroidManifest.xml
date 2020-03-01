@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".mvp.ui.activity.LoginActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:exported="false"/>
         <activity android:name="com.yalantis.ucrop.UCropActivity"

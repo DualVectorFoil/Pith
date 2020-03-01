@@ -10,13 +10,13 @@ import androidx.annotation.Nullable;
 
 import com.dualvector.pith.R;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
-import com.dualvector.pith.di.component.DaggerFrForgetComponent;
-import com.dualvector.pith.di.module.FrForgetModule;
 import com.dualvector.pith.mvp.base.BaseFragment;
 import com.dualvector.pith.mvp.contract.FrForgetContract;
 import com.dualvector.pith.mvp.presenter.FrForgetPresenter;
 
 import org.greenrobot.eventbus.EventBus;
+
+//import com.dualvector.pith.di.component.DaggerFrForgetComponent;
 
 public class ForgetFragment extends BaseFragment<FrForgetPresenter> implements FrForgetContract.IFrForgetView {
 
@@ -25,7 +25,7 @@ public class ForgetFragment extends BaseFragment<FrForgetPresenter> implements F
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DaggerFrForgetComponent.builder().frForgetModule(new FrForgetModule(this)).build().inject(this);
+//        DaggerFrForgetComponent.builder().frForgetModule(new FrForgetModule(this)).build().inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
