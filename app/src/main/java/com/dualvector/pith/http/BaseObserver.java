@@ -2,6 +2,7 @@ package com.dualvector.pith.http;
 
 import android.util.Log;
 
+import com.dualvector.pith.BuildConfig;
 import com.dualvector.pith.app.constants.HttpStatus;
 import com.dualvector.pith.mvp.base.BaseBean;
 import com.google.gson.JsonParseException;
@@ -18,7 +19,7 @@ import retrofit2.HttpException;
 
 public abstract class BaseObserver<T> implements Observer<BaseBean<T>> {
 
-    protected static final String TAG = BaseObserver.class.getSimpleName();
+    protected static final String TAG = "BaseObserver";
 
     protected BaseObserver() {}
 
@@ -72,6 +73,9 @@ public abstract class BaseObserver<T> implements Observer<BaseBean<T>> {
             error = e.getLocalizedMessage();
         }
 
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "???   " + e);
+        }
         try {
             onFailure(error, false);
         } catch (Exception err) {

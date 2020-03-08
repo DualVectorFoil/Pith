@@ -1,5 +1,6 @@
 package com.dualvector.pith.http.common;
 
+import com.dualvector.pith.mvp.model.bean.ImageDetailBean;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 
 import io.reactivex.Observable;
@@ -22,4 +23,8 @@ public interface CommonApiService {
     @FormUrlEncoded
     @POST("user/register")
     Observable<ProfileBean> register(@Field("user_name") String username, @Field("password") String password, @Field("avatar_url") String avatar_url);
+
+    @FormUrlEncoded
+    @POST("images/get_images")
+    Observable<ImageDetailBean> getImages(@Field("item_count") int itemCount, @Field("user_id") long userId, @Field("images_type") int imageType);
 }

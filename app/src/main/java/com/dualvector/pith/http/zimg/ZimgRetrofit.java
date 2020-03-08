@@ -62,15 +62,11 @@ public class ZimgRetrofit {
     }
 
     private ObservableTransformer threadTransformer() {
-        return new ObservableTransformer() {
-            @Override
-            public ObservableSource apply(Observable observable) {
-                return observable
+        return (Observable observable) ->
+                observable
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.io())
                         .observeOn(Schedulers.computation());
-            }
-        };
     }
 
     // TODO You should sync the codes when you subscribe

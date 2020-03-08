@@ -1,5 +1,6 @@
 package com.dualvector.pith.mvp.ui.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,12 +11,15 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.dualvector.pith.R;
 import com.dualvector.pith.app.manager.AccountManager;
+import com.dualvector.pith.di.component.DaggerMainComponent;
+import com.dualvector.pith.di.module.MainModule;
 import com.dualvector.pith.mvp.base.BaseActivity;
 import com.dualvector.pith.mvp.contract.MainContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 import com.dualvector.pith.mvp.presenter.MainPresenter;
 import com.dualvector.pith.mvp.ui.adapter.SectionsPagerAdapter;
 import com.dualvector.pith.mvp.ui.fragment.AccountFragment;
+import com.dualvector.pith.util.RouteUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +27,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-//import com.dualvector.pith.di.component.DaggerMainComponent;
-
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView {
 
     private static final String TAG = "Main_Tag_Activity";
 
-//    @BindView(R.id.main_tool_bar)
-//    protected Toolbar mToolbar;
+    private Context mContext;
+
     @BindView(R.id.sections_view_pager)
     protected ViewPager mViewPager;
     @BindView(R.id.main_navi_bar)
@@ -42,7 +44,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
+        DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
     }
 
     @Override
@@ -64,6 +66,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void initView() {
+        mContext = this;
+
         // init viewpager and fragments
         mFragments = new ArrayList<Fragment>();
         // TODO add fragment into mFragments
@@ -80,7 +84,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
             @Override
             public void onPageSelected(int position) {
-                mNaviBar.selectTab(position);
+                switch (position) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        mNaviBar.selectTab(position);
+                        break;
+                    case 4:
+                        if (mCookie == null) {
+                            RouteUtil.startActivity(mContext, LoginActivity.class);
+                        } else {
+                            mNaviBar.selectTab(position);
+                        }
+                }
             }
 
             @Override

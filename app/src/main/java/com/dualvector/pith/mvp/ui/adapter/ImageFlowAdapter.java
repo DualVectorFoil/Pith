@@ -12,28 +12,22 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.dualvector.pith.R;
-import com.dualvector.pith.app.detail.ImageDetail;
+import com.dualvector.pith.mvp.model.bean.ImageDetailBean;
 import com.dualvector.pith.mvp.ui.viewholder.ImageFlowViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageFlowAdapter extends RecyclerView.Adapter<ImageFlowViewHolder> {
 
-    private List<Integer> mTestList = new ArrayList<Integer>();
-
     private Context mContext;
 
-    private List<ImageDetail> mList;
+    private List<ImageDetailBean.DataBean> mList;
 
-    private RequestOptions mGlideHeadViewOptions = RequestOptions.circleCropTransform()
+    private RequestOptions mGlideImageViewOptions = RequestOptions.centerInsideTransform()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .skipMemoryCache(false)
-            .fallback(R.mipmap.ic_default_user_icon)
-            .placeholder(R.mipmap.ic_default_user_icon)
-            .error(R.mipmap.ic_default_user_icon);
+            .skipMemoryCache(true);
 
-    public ImageFlowAdapter(Context context, List<ImageDetail> list) {
+    public ImageFlowAdapter(Context context, List<ImageDetailBean.DataBean> list) {
         if (list == null) {
             throw new IllegalArgumentException("can not use null to init ImageFlowAdapter");
         }
@@ -41,9 +35,13 @@ public class ImageFlowAdapter extends RecyclerView.Adapter<ImageFlowViewHolder> 
         mList = list;
     }
 
-    public void feedImages(List<ImageDetail> list) {
+    public void feedImages(List<ImageDetailBean.DataBean> list) {
         mList.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public void clearImages() {
+        mList.clear();
     }
 
     @NonNull
@@ -57,7 +55,7 @@ public class ImageFlowAdapter extends RecyclerView.Adapter<ImageFlowViewHolder> 
     public void onBindViewHolder(@NonNull ImageFlowViewHolder holder, int position) {
         Glide.with(mContext)
                 .load(mList.get(position).getUrl())
-                .apply(mGlideHeadViewOptions)
+                .apply(mGlideImageViewOptions)
                 .into(holder.mImageView);
     }
 

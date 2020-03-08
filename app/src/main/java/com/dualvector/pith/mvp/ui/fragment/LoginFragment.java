@@ -20,6 +20,8 @@ import com.dualvector.pith.app.event.LoginEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
 import com.dualvector.pith.app.manager.AccountManager;
+import com.dualvector.pith.di.component.DaggerFrLoginComponent;
+import com.dualvector.pith.di.module.FrLoginModule;
 import com.dualvector.pith.mvp.base.BaseFragment;
 import com.dualvector.pith.mvp.contract.FrLoginContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
@@ -31,8 +33,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-//import com.dualvector.pith.di.component.DaggerFrLoginComponent;
 
 public class LoginFragment extends BaseFragment<FrLoginPresenter> implements FrLoginContract.IFrLoginView {
 
@@ -62,7 +62,7 @@ public class LoginFragment extends BaseFragment<FrLoginPresenter> implements FrL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        DaggerFrLoginComponent.builder().frLoginModule(new FrLoginModule(this)).build().inject(this);
+        DaggerFrLoginComponent.builder().frLoginModule(new FrLoginModule(this)).build().inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

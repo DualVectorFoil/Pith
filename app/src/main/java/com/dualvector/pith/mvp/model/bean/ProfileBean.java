@@ -6,6 +6,7 @@ public class ProfileBean extends BaseBean<ProfileBean.DataBean> {
 
     public static class DataBean {
         /**
+         * user_id : 23432423412
          * user_name : erjiguan
          * pwd : cool_master
          * avatar_url : http://XXX
@@ -14,12 +15,21 @@ public class ProfileBean extends BaseBean<ProfileBean.DataBean> {
          * token : akf32423jfka
          */
 
+        private long userId;
         private String user_name;
         private String pwd;
         private String avatar_url;
         private long registered_at;
         private long last_login_at;
         private String token;
+
+        public long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(long userId) {
+            this.userId = userId;
+        }
 
         public String getUserName() {
             return user_name;

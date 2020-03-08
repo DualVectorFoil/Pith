@@ -3,8 +3,10 @@ package com.dualvector.pith.http.common;
 import com.dualvector.pith.BuildConfig;
 import com.dualvector.pith.app.constants.NetworkConstants;
 import com.dualvector.pith.http.BaseObserver;
+import com.dualvector.pith.mvp.model.bean.ImageDetailBean;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -39,6 +41,7 @@ public class CommonRetrofit {
                 .readTimeout(CommonApiService.MAX_REQUEST_TIME, TimeUnit.SECONDS)
                 .writeTimeout(CommonApiService.MAX_REQUEST_TIME, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
+                .addInterceptor(new CommonHeaderInterceptor())
                 .build();
 
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder();
@@ -67,15 +70,11 @@ public class CommonRetrofit {
     }
 
     private ObservableTransformer threadTransformer() {
-        return new ObservableTransformer() {
-            @Override
-            public ObservableSource apply(Observable observable) {
-                return observable
-                        .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
+        return (Observable observable) ->
+             observable
+                     .subscribeOn(Schedulers.io())
+                     .unsubscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread());
     }
 
     public void loginWithPassword(String userName, String password, BaseObserver<ProfileBean.DataBean> scheduler) {
@@ -92,6 +91,12 @@ public class CommonRetrofit {
 
     public void register(String userName, String password, String avatarUrl, BaseObserver<ProfileBean.DataBean> scheduler) {
         mApiService.register(userName, password, avatarUrl)
+                .compose(threadTransformer())
+                .subscribe(scheduler);
+    }
+
+    public void getImages(int currentItemCount, long userId, int imagesType, BaseObserver<List<ImageDetailBean.DataBean>> scheduler) {
+        mApiService.getImages(currentItemCount, userId, imagesType)
                 .compose(threadTransformer())
                 .subscribe(scheduler);
     }
