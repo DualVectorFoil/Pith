@@ -24,8 +24,8 @@ public class FrLoginModel implements FrLoginContract.IFrLoginModel {
     }
 
     @Override
-    public void handleLogin(String userName, String password, OnLoadDataListener<ProfileBean.DataBean> listener) {
-        CommonRetrofit.getInstance().loginWithPassword(userName, password, new BaseObserver<ProfileBean.DataBean>() {
+    public void handleLogin(String phone, String password, OnLoadDataListener<ProfileBean.DataBean> listener) {
+        CommonRetrofit.getInstance().loginWithPassword(phone, password, new BaseObserver<ProfileBean.DataBean>() {
             @Override
             protected void onSuccess(ProfileBean.DataBean bean) throws Exception {
                 listener.onSuccess(bean);
@@ -34,6 +34,7 @@ public class FrLoginModel implements FrLoginContract.IFrLoginModel {
             @Override
             protected void onFailure(String error, boolean isNetworkError) throws Exception {
                 Log.e(TAG, "login failed, err: " + error);
+                listener.onFailure(error);
             }
         });
     }

@@ -21,9 +21,9 @@ public class FrLoginPresenter extends BasePresenter<FrLoginContract.IFrLoginMode
         super(model, view);
     }
 
-    public void handleLogin(String userName, String password) {
-        if (userName == null || "".equals(userName)) {
-            Log.e(TAG, "userName is illegal, userName: " + userName);
+    public void handleLogin(String phone, String password) {
+        if (phone == null || "".equals(phone)) {
+            Log.e(TAG, "phone is illegal, phone: " + phone);
             ToastUtil.showToast("不符合规范的用户名");
             return;
         }
@@ -32,11 +32,11 @@ public class FrLoginPresenter extends BasePresenter<FrLoginContract.IFrLoginMode
             ToastUtil.showToast("不符合规范的密码");
             return;
         }
-        if (!AccountUtil.isIllegalRegisterInfo(userName, password)) {
+        if (!AccountUtil.isIllegalLoginInfo(phone, password)) {
             return;
         }
 
-        mModel.handleLogin(userName, password, new OnLoadDataListener<ProfileBean.DataBean>() {
+        mModel.handleLogin(phone, password, new OnLoadDataListener<ProfileBean.DataBean>() {
             @Override
             public void onSuccess(ProfileBean.DataBean dataBean) {
                 AccountManager.getsInstance().setCookie(dataBean);
@@ -46,7 +46,7 @@ public class FrLoginPresenter extends BasePresenter<FrLoginContract.IFrLoginMode
             @Override
             public void onFailure(String errMsg) {
                 Log.d(TAG, "handleLogin failed, errMsg: " + errMsg);
-                ToastUtil.showToast("登陆失败，请检查网络");
+                ToastUtil.showToast("登陆失败，请检查账号信息或网络");
             }
         });
     }

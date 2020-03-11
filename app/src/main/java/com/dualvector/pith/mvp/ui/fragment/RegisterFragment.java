@@ -27,6 +27,8 @@ import com.dualvector.pith.app.event.PhotoEvent;
 import com.dualvector.pith.app.event.RouteEvent;
 import com.dualvector.pith.app.event.ShowRegisterTvEvent;
 import com.dualvector.pith.app.photo.PhotoHelper;
+import com.dualvector.pith.di.component.DaggerFrRegisterComponent;
+import com.dualvector.pith.di.module.FrRegisterModule;
 import com.dualvector.pith.mvp.base.BaseFragment;
 import com.dualvector.pith.mvp.contract.FrRegisterContract;
 import com.dualvector.pith.mvp.model.bean.ProfileBean;
@@ -58,6 +60,8 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
 
     @BindView(R.id.register_user_head)
     protected PersonalCenterHeadView mHeadView;
+    @BindView(R.id.phone_et)
+    protected EditText mPhoneEt;
     @BindView(R.id.name_et)
     protected EditText mNameEt;
     @BindView(R.id.password_et)
@@ -85,7 +89,7 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        DaggerFrRegisterComponent.builder().frRegisterModule(new FrRegisterModule(this)).build().inject(this);
+        DaggerFrRegisterComponent.builder().frRegisterModule(new FrRegisterModule(this)).build().inject(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -111,7 +115,7 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
 
     }
 
-    @OnClick({R.id.register_user_head, R.id.name_et, R.id.password_et,
+    @OnClick({R.id.register_user_head, R.id.name_et, R.id.phone_et, R.id.password_et,
             R.id.repeat_password_et, R.id.login_direct_tv, R.id.confirm_register_btn})
     public void onClick(View view) {
         int id = view.getId();
@@ -121,6 +125,9 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
                 break;
             case R.id.name_et:
                 handleNameEtClick(view);
+                break;
+            case R.id.phone_et:
+                handlePhoneEtClick(view);
                 break;
             case R.id.password_et:
                 handlePasswordEtClick(view);
@@ -150,6 +157,10 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
         }
     }
 
+    private void handlePhoneEtClick(View view) {
+
+    }
+
     private void handleNameEtClick(View view) {
 
     }
@@ -166,7 +177,7 @@ public class RegisterFragment extends BaseFragment<FrRegisterPresenter> implemen
     }
 
     private void handleConfirmLoginBtnClick(View view) {
-        mPresenter.handleRegister(mNameEt.getText().toString(), mPasswordEt.getText().toString(),
+        mPresenter.handleRegister(mPhoneEt.getText().toString(), mNameEt.getText().toString(), mPasswordEt.getText().toString(),
                 mRepeatPasswordEt.getText().toString(), mCropImageFile);
     }
 

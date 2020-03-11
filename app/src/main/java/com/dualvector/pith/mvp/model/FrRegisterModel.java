@@ -37,7 +37,7 @@ public class FrRegisterModel implements FrRegisterContract.IFrRegisterModel {
     }
 
     @Override
-    public void handleRegister(String userName, String password, File avatar, OnLoadDataListener<ProfileBean.DataBean> listener) {
+    public void handleRegister(String phone, String userName, String password, File avatar, OnLoadDataListener<ProfileBean.DataBean> listener) {
         if (avatar != null && avatar.exists()) {
             RequestBody body = RequestBody.create(MediaType.parse("png"), avatar);
             ZimgRetrofit.getInstance().uploadImage(body, new ZimgObserver() {
@@ -66,7 +66,7 @@ public class FrRegisterModel implements FrRegisterContract.IFrRegisterModel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            CommonRetrofit.getInstance().register(userName, password, mAvatarUrl, new BaseObserver<ProfileBean.DataBean>() {
+            CommonRetrofit.getInstance().register(phone, userName, password, mAvatarUrl, new BaseObserver<ProfileBean.DataBean>() {
                 @Override
                 protected void onSuccess(ProfileBean.DataBean bean) throws Exception {
                     listener.onSuccess(bean);

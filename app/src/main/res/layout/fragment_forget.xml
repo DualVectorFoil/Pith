@@ -10,7 +10,7 @@
         android:layout_marginTop="@dimen/register_forget_fragment_marginTop">
 
         <EditText
-            android:id="@+id/name_et"
+            android:id="@+id/phone_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:layout_below="@+id/name_et"
+            android:layout_below="@+id/phone_et"
             android:hint="@string/input_password"
             android:textColor="#000000"
             android:drawableStart="@mipmap/ic_password_icon"

@@ -7,6 +7,10 @@
 
     <string name="input_user_name">请输入账号名</string>
 
+    <string name="input_phone_num_for_login">请输入手机号</string>
+
+    <string name="input_phone_num_for_register">请输入手机号（无需验证）</string>
+
     <string name="input_password">请输入密码</string>
 
     <string name="repeat_input_password">请确认密码</string>

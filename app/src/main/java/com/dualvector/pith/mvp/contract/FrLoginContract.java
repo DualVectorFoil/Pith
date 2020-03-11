@@ -14,6 +14,6 @@ public interface FrLoginContract {
 
     interface IFrLoginModel extends IModel {
 
-        void handleLogin(String userName, String password, OnLoadDataListener<ProfileBean.DataBean> listener);
+        void handleLogin(String phone, String password, OnLoadDataListener<ProfileBean.DataBean> listener);
     }
 }

@@ -16,6 +16,6 @@ public interface FrRegisterContract {
 
     interface IFrRegisterModel extends IModel {
 
-        void handleRegister(String userName, String password, File avatarurl, OnLoadDataListener<ProfileBean.DataBean> listener);
+        void handleRegister(String phone, String userName, String password, File avatarurl, OnLoadDataListener<ProfileBean.DataBean> listener);
     }
 }

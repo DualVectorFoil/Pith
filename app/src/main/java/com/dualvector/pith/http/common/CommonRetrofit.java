@@ -76,20 +76,20 @@ public class CommonRetrofit {
                      .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public void loginWithPassword(String userName, String password, BaseObserver<ProfileBean.DataBean> scheduler) {
-        mApiService.loginWithPassword(userName, password)
+    public void loginWithPassword(String phone, String password, BaseObserver<ProfileBean.DataBean> scheduler) {
+        mApiService.loginWithPassword(phone, password)
                 .compose(threadTransformer())
                 .subscribe(scheduler);
     }
 
-    public void loginWithToken(String userName, String token, BaseObserver<ProfileBean.DataBean> scheduler) {
-        mApiService.loginWithToken(userName, token)
+    public void loginWithToken(String phone, String token, BaseObserver<ProfileBean.DataBean> scheduler) {
+        mApiService.loginWithToken(phone, token)
                 .compose(threadTransformer())
                 .subscribe(scheduler);
     }
 
-    public void register(String userName, String password, String avatarUrl, BaseObserver<ProfileBean.DataBean> scheduler) {
-        mApiService.register(userName, password, avatarUrl)
+    public void register(String phone, String userName, String password, String avatarUrl, BaseObserver<ProfileBean.DataBean> scheduler) {
+        mApiService.register(phone, userName, password, avatarUrl)
                 .compose(threadTransformer())
                 .subscribe(scheduler);
     }

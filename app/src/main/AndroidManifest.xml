@@ -61,6 +61,21 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".app.receiver.PushMessageReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.dualvector.pith" />
+            </intent-filter>
+        </receiver>
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.dualvector.pith.provider"

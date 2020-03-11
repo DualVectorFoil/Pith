@@ -95,6 +95,7 @@ dependencies {
     implementation 'com.github.yalantis:ucrop:2.2.4'
 
     // jiguang push
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'
     implementation 'cn.jiguang.sdk:jpush:3.5.6'
     implementation 'cn.jiguang.sdk:jcore:2.2.8'
 }

@@ -23,7 +23,12 @@ public class FrRegisterPresenter extends BasePresenter<FrRegisterContract.IFrReg
         super(model, view);
     }
 
-    public void handleRegister(String userName, String password, String repeatPassword, File avatar) {
+    public void handleRegister(String phone, String userName, String password, String repeatPassword, File avatar) {
+        if (phone == null || "".equals(phone)) {
+            Log.e(TAG, "phone is illegal, userName: " + phone);
+            ToastUtil.showToast("不符合规范的手机号");
+            return;
+        }
         if (userName == null || "".equals(userName)) {
             Log.e(TAG, "userName is illegal, userName: " + userName);
             ToastUtil.showToast("不符合规范的用户名");
@@ -39,11 +44,11 @@ public class FrRegisterPresenter extends BasePresenter<FrRegisterContract.IFrReg
             ToastUtil.showToast("两次输入的密码不相同");
             return;
         }
-        if (!AccountUtil.isIllegalRegisterInfo(userName, password)) {
+        if (!AccountUtil.isIllegalRegisterInfo(phone, userName, password)) {
             return;
         }
 
-        mModel.handleRegister(userName, password, avatar, new OnLoadDataListener<ProfileBean.DataBean>() {
+        mModel.handleRegister(phone, userName, password, avatar, new OnLoadDataListener<ProfileBean.DataBean>() {
             @Override
             public void onSuccess(ProfileBean.DataBean dataBean) {
                 AccountManager.getsInstance().setCookie(dataBean);

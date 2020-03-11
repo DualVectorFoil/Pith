@@ -14,15 +14,15 @@ public interface CommonApiService {
 
     @FormUrlEncoded
     @POST("user/login")
-    Observable<ProfileBean> loginWithPassword(@Field("user_name") String username, @Field("password") String password);
+    Observable<ProfileBean> loginWithPassword(@Field("phone_num") String phone, @Field("password") String password);
 
     @FormUrlEncoded
     @POST("user/login")
-    Observable<ProfileBean> loginWithToken(@Field("user_name") String username, @Field("token") String token);
+    Observable<ProfileBean> loginWithToken(@Field("phone_num") String phone, @Field("token") String token);
 
     @FormUrlEncoded
     @POST("user/register")
-    Observable<ProfileBean> register(@Field("user_name") String username, @Field("password") String password, @Field("avatar_url") String avatar_url);
+    Observable<ProfileBean> register(@Field("phone_num") String phone, @Field("user_name") String username, @Field("password") String password, @Field("avatar_url") String avatar_url);
 
     @FormUrlEncoded
     @POST("images/get_images")

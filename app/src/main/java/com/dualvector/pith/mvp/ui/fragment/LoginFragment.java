@@ -40,8 +40,8 @@ public class LoginFragment extends BaseFragment<FrLoginPresenter> implements FrL
 
     @BindView(R.id.login_user_head)
     protected PersonalCenterHeadView mHeadView;
-    @BindView(R.id.name_et)
-    protected EditText mNameEt;
+    @BindView(R.id.phone_et)
+    protected EditText mPhoneEt;
     @BindView(R.id.password_et)
     protected PasswordEditText mPasswordEt;
     @BindView(R.id.forget_password_tv)
@@ -83,16 +83,16 @@ public class LoginFragment extends BaseFragment<FrLoginPresenter> implements FrL
         if (mCookie != null) {
             mHeadView.setBackground(null);
             Glide.with(mActivity).load(mCookie.getAvatarUrl()).apply(mGlideHeadViewOptions).into(mHeadView);
-            mNameEt.setText(mCookie.getUserName());
+            mPhoneEt.setText(mCookie.getPhoneNum());
             mPasswordEt.setText(mCookie.getPwd());
         }
     }
 
-    @OnClick({R.id.name_et, R.id.password_et, R.id.forget_password_tv, R.id.confirm_login_btn})
+    @OnClick({R.id.phone_et, R.id.password_et, R.id.forget_password_tv, R.id.confirm_login_btn})
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.name_et:
+            case R.id.phone_et:
                 handleNameEtClick(view);
                 break;
             case R.id.password_et:
@@ -128,7 +128,7 @@ public class LoginFragment extends BaseFragment<FrLoginPresenter> implements FrL
     }
 
     private void handleConfirmLoginBtn(View view) {
-        mPresenter.handleLogin(mNameEt.getText().toString(), mPasswordEt.getText().toString());
+        mPresenter.handleLogin(mPhoneEt.getText().toString(), mPasswordEt.getText().toString());
     }
 
     @Override
