@@ -11,6 +11,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // jiguang push
+        applicationId "com.dualvector.pith"
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: defaultConfig.applicationId,
+                JPUSH_APPKEY : "b24259d3a55ef7650a1ab6b3",
+                JPUSH_CHANNEL: "default_developer",
+        ]
     }
     buildTypes {
         release {
@@ -82,4 +93,8 @@ dependencies {
 
     // ucrop
     implementation 'com.github.yalantis:ucrop:2.2.4'
+
+    // jiguang push
+    implementation 'cn.jiguang.sdk:jpush:3.5.6'
+    implementation 'cn.jiguang.sdk:jcore:2.2.8'
 }

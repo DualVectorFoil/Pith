@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.jpush.android.api.JPushInterface;
 
 public class AccountFragment extends BaseFragment<FrAccountPresenter> implements FrAccountContract.IFrAccountView {
 
